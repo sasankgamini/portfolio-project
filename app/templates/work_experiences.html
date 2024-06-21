@@ -2,6 +2,15 @@
 
 {%block content%}
 
-<p>My work experiences.</p>
+{% for experience in work_experiences %}
+    <div class="work-experience">
+        <h3>{{ experience.job_title }}</h3>
+        <p><b>Company:</b> {{ experience.company }}</p>
+        <p><b>Location:</b> {{ experience.location }}</p>
+        <p><b>Start Date:</b> {{ experience.start_date }}</p>
+        <p><b>End Date:</b> {{ experience.end_date }}</p>
+        <p>{{ experience.description }}</p>
+    </div>
+{% endfor %}
 
 {%endblock%}

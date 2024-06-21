@@ -17,7 +17,25 @@ def hobbies():
 
 @app.route('/work_experiences')
 def work_experiences():
-    return render_template('work_experiences.html', name=name, title="Work Experiences", url=os.getenv("URL"))
+    experiences = [
+        {
+        'job_title': "something",
+        'company': "something",
+        'location': "something",
+        'start_date': "something",
+        'end_date': "something",
+        'description': "something"
+        },
+        {
+        'job_title': "something",
+        'company': "something",
+        'location': "something",
+        'start_date': "something",
+        'end_date': "something",
+        'description': "something"
+        }
+    ]
+    return render_template('work_experiences.html', name=name, title="Work Experiences", work_experiences=experiences, url=os.getenv("URL"))
 
 @app.route('/education')
 def education():
