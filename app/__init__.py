@@ -13,7 +13,8 @@ def index():
 
 @app.route('/hobbies')
 def hobbies():
-    return render_template('hobbies.html', name=name, title="Hobbies", url=os.getenv("URL"))
+    hobby_list = ["Basketball", "Dancing", "Gym"]
+    return render_template('hobbies.html', name=name, title="Hobbies", hobbies=hobby_list, url=os.getenv("URL"))
 
 @app.route('/work_experiences')
 def work_experiences():
