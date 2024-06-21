@@ -13,7 +13,7 @@ def index():
 
 @app.route('/hobbies')
 def hobbies():
-    hobby_list = ["Basketball", "Dancing", "Gym"]
+    hobby_list = ["Basketball", "Dancing", "Working Out", "Skiing", "Camping"]
     return render_template('hobbies.html', name=name, title="Hobbies", hobbies=hobby_list, url=os.getenv("URL"))
 
 @app.route('/work_experiences')
@@ -40,4 +40,13 @@ def work_experiences():
 
 @app.route('/education')
 def education():
-    return render_template('education.html', name=name, title="Education", url=os.getenv("URL"))
+    educations = [
+        {
+            'school': "UC Berkeley",
+            'degree': "Bachelor's in Computer Science, Statistics",
+            'start_date': "August 2024",
+            'end_date': "May 2026",
+            'description': "Pursuing Computer Science and Statistics at UC Berkeley"
+        }
+    ]
+    return render_template('education.html', name=name, title="Education", educations = educations, url=os.getenv("URL"))
