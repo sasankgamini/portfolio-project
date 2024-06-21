@@ -9,7 +9,8 @@ name = "Sasank Gamini"
 
 @app.route('/')
 def index():
-    return render_template('index.html', name=name, title="About", url=os.getenv("URL"))
+    about_section = "Hi, my name is Sasank and this is my portfolio web app"
+    return render_template('index.html', name=name, title="About", about=about_section, url=os.getenv("URL"))
 
 @app.route('/hobbies')
 def hobbies():
