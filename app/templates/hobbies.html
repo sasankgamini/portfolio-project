@@ -2,6 +2,10 @@
 
 {%block content%}
 
-<p>My hobbies.</p>
+{% for hobby in hobbies %}
+    <div class="hobby">
+        <h3>{{ hobby }}</h3>
+    </div>
+{% endfor %}
 
 {%endblock%}

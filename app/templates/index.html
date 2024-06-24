@@ -1,7 +1,23 @@
-{%extends "base.html" %}
+{% extends "base.html" %}
 
-{%block content%}
+{% block content %}
 
-<p>Hi my name is Joe and I love to fly and hang out with my fellow birds.</p>
+<p>{{ about }}</p>
 
-{%endblock%}
+<h2>Where I've Been</h2>
+
+<div id="map" style="width: 600px; height: 400px;"></div>
+<script>
+    var map = L.map('map').fitWorld();
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
+        {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}
+    ).addTo(map);
+</script>
+<script>
+{% for marker in markers %}
+    L.marker([{{ marker.lat }}, {{ marker.lon }}]).addTo(map).bindPopup("{{ marker.popup }}");
+{% endfor %}
+</script>
+
+{% endblock %}
