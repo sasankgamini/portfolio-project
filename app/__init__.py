@@ -11,7 +11,14 @@ name = "Sasank Gamini"
 def index():
     about_section = "Hi, my name is Sasank and this is my portfolio web app"
     markers = [
-        {'lat': 40, 'lon': -100, 'popup': 'USA'},
+        {'lat': 34, 'lon': -118, 'popup': 'Los Angeles'},
+         {'lat': 40, 'lon': -74, 'popup': 'New York'},
+        {'lat': 17, 'lon': 78, 'popup': 'India'},
+        {'lat': 25, 'lon': -78, 'popup': 'Bahamas'},
+        {'lat': 19, 'lon': -155, 'popup': 'Hawaii'},
+        {'lat': 22, 'lon': -109, 'popup': 'Cabo San Lucas'},
+        {'lat': 21, 'lon': -86, 'popup': 'Cancun'},
+        {'lat': 9, 'lon': -83, 'popup': 'Costa Rica'},
     ]
     return render_template('index.html', name=name, title="About", about=about_section, markers=markers, url=os.getenv("URL"))
 
