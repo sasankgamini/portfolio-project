@@ -9,7 +9,7 @@ name = "Sasank Gamini"
 
 @app.route('/')
 def index():
-    about_section = "NEWWW CHANGE TEST Hi! My name is Sasank Gamini and I am currently pursuing Computer Science and Statistics B.A. at the University of California, Berkeley. I'm interested in pursuing new opportunities in Software Engineering and learning about the various specializations of the tech industry. Hands-on experience gained through internships, projects, hackathons. I'm excited to learn more as a student and grow into a career."
+    about_section = "Hi! My name is Sasank Gamini and I am currently pursuing Computer Science and Statistics B.A. at the University of California, Berkeley. I'm interested in pursuing new opportunities in Software Engineering and learning about the various specializations of the tech industry. Hands-on experience gained through internships, projects, hackathons. I'm excited to learn more as a student and grow into a career."
     markers = [
         {'lat': 34, 'lon': -118, 'popup': 'Los Angeles'},
          {'lat': 40, 'lon': -74, 'popup': 'New York'},
