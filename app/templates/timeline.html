@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+
+    <!-- Form for creating new timeline post -->
+    <form id="timelineForm">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Post</button>
+    </form>
+
+    <hr>
+
+    <!-- Timeline posts display -->
+    <div id="timelinePosts">
+        <!-- Timeline posts will be dynamically added here -->
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to fetch timeline posts and display on page load
+    function fetchTimelinePosts() {
+        fetch('/api/timeline_post')
+            .then(response => response.json())
+            .then(data => {
+                const timelinePosts = document.getElementById('timelinePosts');
+                timelinePosts.innerHTML = ''; // Clear previous posts
+
+                data.timeline_posts.forEach(post => {
+                    const postDiv = document.createElement('div');
+                    postDiv.classList.add('card', 'my-2');
+                    postDiv.innerHTML = `
+                        <div class="card-body">
+                            <h5 class="card-title">${post.name}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">${post.email}</h6>
+                            <p class="card-text">${post.content}</p>
+                            <small class="text-muted">${new Date(post.created_at).toLocaleString()}</small>
+                        </div>
+                    `;
+                    timelinePosts.appendChild(postDiv);
+                });
+            })
+            .catch(error => console.error('Error fetching timeline posts:', error));
+    }
+
+    // Fetch timeline posts on page load
+    fetchTimelinePosts();
+
+    // Submit event listener for posting new timeline entry
+    document.getElementById('timelineForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const formData = new FormData(this);
+        fetch('/api/timeline_post', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Display newly added post
+            fetchTimelinePosts();
+            // Clear form fields
+            this.reset();
+        })
+        .catch(error => console.error('Error adding timeline post:', error));
+    });
+});
+</script>
+{% endblock %}

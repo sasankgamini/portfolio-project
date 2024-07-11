@@ -105,6 +105,10 @@ def education():
     ]
     return render_template('education.html', name=name, title="Education", educations = educations, url=os.getenv("URL"))
 
+@app.route('/timeline')
+def timeline():
+    return render_template('timeline.html', title='Timeline')
+
 #save endpoint for TimelinePost ORM model
 @app.route('/api/timeline_post', methods = ["POST"])
 def post_time_line_post():
@@ -124,3 +128,4 @@ def get_time_line_post():
             for p in TimelinePost.select().order_by(TimelinePost.created_at.desc())
         ]
     }
+
