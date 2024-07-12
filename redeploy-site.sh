@@ -1,11 +1,15 @@
 #!/bin/bash
 
-tmux kill-server
+#going into project folder
 cd /root/portfolio-project
+
+#updating project folder to have latest changes from the main branch on GitHub.
 git fetch && git reset origin/main --hard
+
+#entering python virtual environment and installing required dependencies
 source python3-virtualenv/bin/activate
 pip install -r requirements.txt
-tmux new-session -d -s portfolio_app
-tmux send-keys -t portfolio_app 'cd /root/portfolio-project' C-m
-tmux send-keys -t portfolio_app 'source python3-virtualenv/bin/activate' C-m
-tmux send-keys -t portfolio_app 'flask run --host=0.0.0.0 --port=80' C-m
+
+#restarting the myportfolio systemd service, so that the changes above get applied
+systemctl daemon-reload
+systemctl restart myportfolio
