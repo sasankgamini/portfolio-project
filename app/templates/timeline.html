@@ -16,6 +16,7 @@
             <label for="content">Content</label>
             <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
         </div>
+        <p id="error"></p>
         <button type="submit" class="btn btn-primary">Post</button>
     </form>
 
@@ -36,6 +37,10 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 const timelinePosts = document.getElementById('timelinePosts');
                 timelinePosts.innerHTML = ''; // Clear previous posts
+                
+                if (data.error) {
+                    document.getElementById("error").innerHTML = data.error;
+                }
 
                 data.timeline_posts.forEach(post => {
                     const postDiv = document.createElement('div');

@@ -1,5 +1,6 @@
 import os
-from flask import Flask, render_template, request
+import re
+from flask import Flask, render_template, request, make_response, jsonify
 from dotenv import load_dotenv
 from peewee import *
 import datetime
@@ -114,9 +115,19 @@ def timeline():
 #save endpoint for TimelinePost ORM model
 @app.route('/api/timeline_post', methods = ["POST"])
 def post_time_line_post():
-    name = request.form['name']
-    email = request.form['email']
-    content = request.form['content']
+    name = request.form.get('name')
+    email = request.form.get('email')
+    content = request.form.get('content')
+
+    if not name:
+        return make_response(jsonify({'error': 'Invalid name'}), 400)
+    if not email:
+        return make_response(jsonify({'error': 'Invalid email'}), 400)
+    if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+        return make_response(jsonify({'error': 'Invalid email'}), 400)
+    if not content:
+        return make_response(jsonify({'error': 'Invalid content'}), 400)
+
     timeline_post = TimelinePost.create(name=name, email=email, content=content)
 
     return model_to_dict(timeline_post)
