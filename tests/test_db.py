@@ -1,7 +1,7 @@
 import unittest
 from peewee import *
 
-from app, get_time_line_post import TimelinePost
+from app import TimelinePost
 
 MODELS = [TimelinePost]
 
@@ -27,13 +27,13 @@ class TestTimelinePost(unittest.TestCase):
         first_post = TimelinePost.get(TimelinePost.id == 1)
         assert first_post.name == 'John Doe'
         assert first_post.email == 'john@example.com'
-        assert first_post.content == 'Hello World, I\'m John!'
+        assert first_post.content == 'Hello world, I\'m John!'
         assert first_post.created_at is not None
 
         second_post = TimelinePost.get(TimelinePost.id == 2)
         assert second_post.name == 'Jane Doe'
         assert second_post.email == 'jane@example.com'
-        assert second_post.content == 'Hello World, I\'m Jane!'
+        assert second_post.content == 'Hello world, I\'m Jane!'
         assert second_post.created_at is not None
 
         timeline_posts = TimelinePost.select()
