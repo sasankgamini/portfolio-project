@@ -103,7 +103,7 @@ def work_experiences():
 def education():
     educations = [
         {
-            'school': "UC Berkeley",
+            'school': "University of California, Berkeley",
             'degree': "Bachelor's in Computer Science, Statistics",
             'start_date': "August 2024",
             'end_date': "May 2026",
